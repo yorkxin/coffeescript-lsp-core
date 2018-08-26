@@ -21,6 +21,7 @@
     "vscode-languageserver": "^5.0.3"
   },
   "devDependencies": {
+    "coffeescript-types": "https://github.com/chitsaou/coffeescript-types.git",
     "@types/jest": "^23.3.1",
     "@types/nedb": "^1.8.5",
     "@types/node": "^8.10.28",
