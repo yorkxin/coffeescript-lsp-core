@@ -17,7 +17,6 @@ jobs:
           - v1-dependencies-
 
       - run: npm install
-      - run: npm install --only=dev
       - run: npm install --no-save typescript
 
       - save_cache:
@@ -27,4 +26,7 @@ jobs:
 
       - run: npm run lint
       - run: npm run test
-      - run: npm run build
+
+      - run: |
+          npm install --only=dev
+          npm run build
