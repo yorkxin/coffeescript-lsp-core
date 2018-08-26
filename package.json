@@ -1,0 +1,33 @@
+{
+  "name": "coffeescript-lsp-core",
+  "version": "1.0.0",
+  "description": "CoffeeScript Language Server Protocol core library",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": "dist/bin/coffeescript-symbol-indexer.js",
+  "repository": "https://github.com/chitsaou/coffeescript-lsp-core",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint '**/*.ts' 'test/**/*.ts'",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "coffeescript": "^2.1.0",
+    "commander": "^2.15.1",
+    "nedb": "^1.8.0",
+    "typescript": "^2.7.2",
+    "vscode-languageserver": "^5.0.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.1",
+    "@types/nedb": "^1.8.5",
+    "@types/node": "^8.10.28",
+    "@types/tmp": "0.0.33",
+    "jest": "^23.5.0",
+    "tmp": "0.0.33",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0"
+  }
+}
