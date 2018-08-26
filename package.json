@@ -19,7 +19,6 @@
     "coffeescript-types": "https://github.com/chitsaou/coffeescript-types.git",
     "commander": "^2.15.1",
     "nedb": "^1.8.0",
-    "typescript": "^2.7.2",
     "vscode-languageserver": "^5.0.3"
   },
   "devDependencies": {
@@ -29,6 +28,7 @@
     "jest": "^23.5.0",
     "tmp": "0.0.33",
     "ts-jest": "^23.1.4",
-    "tslint": "^5.11.0"
+    "tslint": "^5.11.0",
+    "typescript": ">= 2.7"
   }
 }
