@@ -14,16 +14,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/nedb": "^1.8.5",
     "coffeescript": "^2.1.0",
+    "coffeescript-types": "https://github.com/chitsaou/coffeescript-types.git",
     "commander": "^2.15.1",
     "nedb": "^1.8.0",
     "typescript": "^2.7.2",
     "vscode-languageserver": "^5.0.3"
   },
   "devDependencies": {
-    "coffeescript-types": "https://github.com/chitsaou/coffeescript-types.git",
     "@types/jest": "^23.3.1",
-    "@types/nedb": "^1.8.5",
     "@types/node": "^8.10.28",
     "@types/tmp": "0.0.33",
     "jest": "^23.5.0",
