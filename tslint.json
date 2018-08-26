@@ -23,8 +23,7 @@
     "linterOptions": {
         "exclude": [
             "dist/**/*",
-            "node_modules/**/*",
-            "typings/**/*.d.ts"
+            "node_modules/**/*"
         ]
     }
 }
