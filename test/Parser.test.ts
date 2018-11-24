@@ -85,6 +85,67 @@ describe('Parser', () => {
       ]);
     });
 
+    test('works for export default class', () => {
+      const parser = new Parser({ includeClosure: true });
+      const src = fs.readFileSync(path.resolve(TEST_FIXTURES_ROOT, 'export-default-class.coffee')).toString();
+
+      expect(parser.getSymbolsFromSource(src)).toEqual([
+        { name: 'Foo', kind: SymbolKind.Class, location: expect.anything() },
+        { name: 'constructor()', containerName: 'Foo', kind: SymbolKind.Method, location: expect.anything() },
+        { name: '@x', containerName: 'Foo.constructor()', kind: SymbolKind.Variable, location: expect.anything() },
+        { name: 'foo()', containerName: 'Foo', kind: SymbolKind.Method, location: expect.anything() },
+        { name: '@x', containerName: 'Foo.foo()', kind: SymbolKind.Variable, location: expect.anything() },
+        { name: 'module.exports = Foo', kind: SymbolKind.Variable, location: expect.anything() },
+      ]);
+
+      expect(parser.getExportedSymbolsFromSource(src)).toEqual([
+        { name: 'Foo', kind: SymbolKind.Class, location: expect.anything() },
+        { name: 'constructor()', containerName: 'Foo', kind: SymbolKind.Method, location: expect.anything() },
+        { name: '@x', containerName: 'Foo.constructor()', kind: SymbolKind.Variable, location: expect.anything() },
+        { name: 'foo()', containerName: 'Foo', kind: SymbolKind.Method, location: expect.anything() },
+        { name: '@x', containerName: 'Foo.foo()', kind: SymbolKind.Variable, location: expect.anything() },
+        { name: 'module.exports = Foo', kind: SymbolKind.Variable, location: expect.anything() },
+      ]);
+    });
+
+    test('works for export named class', () => {
+      const parser = new Parser({ includeClosure: true });
+      const src = fs.readFileSync(path.resolve(TEST_FIXTURES_ROOT, 'export-named-class.coffee')).toString();
+
+      expect(parser.getSymbolsFromSource(src)).toEqual([
+        { name: 'Foo', kind: SymbolKind.Class, location: expect.anything() },
+        { name: 'constructor()', containerName: 'Foo', kind: SymbolKind.Method, location: expect.anything() },
+        { name: '@x', containerName: 'Foo.constructor()', kind: SymbolKind.Variable, location: expect.anything() },
+        { name: 'foo()', containerName: 'Foo', kind: SymbolKind.Method, location: expect.anything() },
+        { name: '@x', containerName: 'Foo.foo()', kind: SymbolKind.Variable, location: expect.anything() },
+        { name: 'module.exports.Foo = Foo', kind: SymbolKind.Variable, location: expect.anything() },
+      ]);
+
+      expect(parser.getExportedSymbolsFromSource(src)).toEqual([
+        { name: 'Foo', kind: SymbolKind.Class, location: expect.anything() },
+        { name: 'constructor()', containerName: 'Foo', kind: SymbolKind.Method, location: expect.anything() },
+        { name: '@x', containerName: 'Foo.constructor()', kind: SymbolKind.Variable, location: expect.anything() },
+        { name: 'foo()', containerName: 'Foo', kind: SymbolKind.Method, location: expect.anything() },
+        { name: '@x', containerName: 'Foo.foo()', kind: SymbolKind.Variable, location: expect.anything() },
+        { name: 'module.exports.Foo = Foo', kind: SymbolKind.Variable, location: expect.anything() },
+      ]);
+    });
+
+    test('works for export named class assign', () => {
+      const parser = new Parser({ includeClosure: true });
+      const src = fs.readFileSync(path.resolve(TEST_FIXTURES_ROOT, 'export-named-class-assign.coffee')).toString();
+
+      expect(parser.getSymbolsFromSource(src)).toEqual([
+        { name: 'module.exports.Bar = Bar', kind: SymbolKind.Variable, location: expect.anything() },
+        { name: 'baz()', containerName: 'module.exports.Bar = Bar', kind: SymbolKind.Method, location: expect.anything() },
+      ]);
+
+      expect(parser.getExportedSymbolsFromSource(src)).toEqual([
+        { name: 'module.exports.Bar = Bar', kind: SymbolKind.Variable, location: expect.anything() },
+        { name: 'baz()', containerName: 'module.exports.Bar = Bar', kind: SymbolKind.Method, location: expect.anything() },
+      ]);
+    });
+
     test('works for top level function call', () => {
       const parser = new Parser({ includeClosure: true });
       const src = fs.readFileSync(path.resolve(TEST_FIXTURES_ROOT, 'top-level-function-call.coffee')).toString();
