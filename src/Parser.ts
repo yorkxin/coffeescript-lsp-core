@@ -190,7 +190,8 @@ export class Parser {
 
       symbolInformation.push(SymbolInformation.create(symbolMetadata.name, symbolMetadata.kind, _createRange(assign.locationData), undefined, containerName));
 
-      let nextContainerName;
+      let nextContainerName: string;
+      let kind: SymbolKind;
 
       if (container) {
         nextContainerName = `${container.name}.${symbolMetadata.name}`;
@@ -198,14 +199,20 @@ export class Parser {
         nextContainerName = symbolMetadata.name;
       }
 
+      if (rhs instanceof Nodes.Class) {
+        kind = SymbolKind.Class;
+      } else {
+        kind = symbolMetadata.kind;
+      }
+
       const nextContainer: ISymbolMetadata = {
         name: nextContainerName,
-        kind: symbolMetadata.kind,
+        kind,
       };
 
       if (rhs instanceof Nodes.Value && rhs.base instanceof Nodes.Obj) {
         symbolInformation = symbolInformation.concat(this.getSymbolsFromObj(rhs.base, nextContainer));
-      } else if (rhs instanceof Nodes.Code) {
+      } else if (rhs instanceof Nodes.Code || rhs instanceof Nodes.Class) {
         symbolInformation = symbolInformation.concat(this.getSymbolsFromBlock(rhs.body, nextContainer));
       }
     }
