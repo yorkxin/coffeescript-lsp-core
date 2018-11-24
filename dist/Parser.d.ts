@@ -7,7 +7,7 @@ export interface ISymbolMetadata {
 }
 export declare class Parser {
     includeClosure: boolean;
-    constructor({includeClosure}?: {
+    constructor({ includeClosure }?: {
         includeClosure: boolean;
     });
     validateSource(src: string): Diagnostic[];

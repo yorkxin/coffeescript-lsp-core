@@ -150,20 +150,27 @@ class Parser {
             }
             symbolInformation.push(vscode_languageserver_1.SymbolInformation.create(symbolMetadata.name, symbolMetadata.kind, _createRange(assign.locationData), undefined, containerName));
             let nextContainerName;
+            let kind;
             if (container) {
                 nextContainerName = `${container.name}.${symbolMetadata.name}`;
             }
             else {
                 nextContainerName = symbolMetadata.name;
             }
+            if (rhs instanceof Nodes.Class) {
+                kind = vscode_languageserver_1.SymbolKind.Class;
+            }
+            else {
+                kind = symbolMetadata.kind;
+            }
             const nextContainer = {
                 name: nextContainerName,
-                kind: symbolMetadata.kind,
+                kind,
             };
             if (rhs instanceof Nodes.Value && rhs.base instanceof Nodes.Obj) {
                 symbolInformation = symbolInformation.concat(this.getSymbolsFromObj(rhs.base, nextContainer));
             }
-            else if (rhs instanceof Nodes.Code) {
+            else if (rhs instanceof Nodes.Code || rhs instanceof Nodes.Class) {
                 symbolInformation = symbolInformation.concat(this.getSymbolsFromBlock(rhs.body, nextContainer));
             }
         }
