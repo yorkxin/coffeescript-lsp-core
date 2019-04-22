@@ -11,8 +11,8 @@
     "lint": "tslint 'src/**/*.ts' 'test/**/*.ts'",
     "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Yucheng Chuang <ducksteven@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "@types/nedb": "^1.8.5",
     "coffeescript": "^2.1.0",
