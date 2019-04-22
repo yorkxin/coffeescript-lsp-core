@@ -28,6 +28,16 @@ describe('Parser', () => {
     });
   });
 
+  // Added in CoffeeScript 2.4
+  test('test dynamic import()', () => {
+    const parser = new Parser();
+    const src = 'Lodash = import("lodash")';
+    const symbols = parser.getSymbolsFromSource(src);
+    expect(symbols).toEqual([
+      { name: 'Lodash', kind: SymbolKind.Package, location: expect.anything() },
+    ]);
+  });
+
   describe('Parser in "includeClosure = true" mode', () => {
     test('works for named export', () => {
       const parser = new Parser({ includeClosure: true });
@@ -292,6 +302,7 @@ describe('Parser', () => {
       expect(parser.getSymbolsFromSource(src)).toEqual([
         { name: 'A', kind: SymbolKind.Package, location: expect.anything()},
         // FIXME: { b } = require() should be included here
+        { name: 'C', kind: SymbolKind.Package, location: expect.anything()},
         { name: 'GLOBAL_A', kind: SymbolKind.Variable, location: expect.anything()},
         { name: 'GLOBAL_B', kind: SymbolKind.Namespace, location: expect.anything()},
         { name: 'varA', kind: SymbolKind.Variable, containerName: 'GLOBAL_B', location: expect.anything()},

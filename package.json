@@ -16,7 +16,7 @@
   "dependencies": {
     "@types/nedb": "^1.8.5",
     "coffeescript": "^2.1.0",
-    "coffeescript-types": "https://github.com/chitsaou/coffeescript-types.git",
+    "coffeescript-types": "https://github.com/chitsaou/coffeescript-types.git#v1.0.1",
     "commander": "^2.15.1",
     "nedb": "^1.8.0",
     "vscode-languageserver": "^5.0.3"
