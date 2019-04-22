@@ -1,6 +1,9 @@
 A = require('lib_a')
 { b } = require('lib_b')
 
+# Dynamic import
+C = import('lib_c')
+
 GLOBAL_A = 'abc'
 GLOBAL_B = {
   varA: 1

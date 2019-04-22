@@ -310,6 +310,10 @@ function _getSymbolMetadataByAssignment(lhs: Nodes.Value, rhs: Nodes.Value | Nod
     if (rhs.base instanceof Nodes.Obj) {
       kind = SymbolKind.Namespace;
     } else if (rhs.base instanceof Nodes.Call && rhs.base.variable.base instanceof Nodes.IdentifierLiteral && rhs.base.variable.base.value === 'require') {
+      // require()
+      kind = SymbolKind.Package;
+    } else if (rhs.base instanceof Nodes.DynamicImportCall) {
+      // dynamic import() (CoffeeScript 2.4+)
       kind = SymbolKind.Package;
     } else if (lhs instanceof Nodes.ThisLiteral) {
       kind = SymbolKind.Property;
