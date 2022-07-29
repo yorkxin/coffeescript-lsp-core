@@ -4,6 +4,9 @@ CoffeeScript Language Server Protocol core libraries in Node.js.
 
 Used by [VSCode CoffeeScript Support](https://github.com/chitsaou/vscode-coffeescript-support) Extension.
 
+## :wave: DEPRECATED DUE TO INACTIVE DEVELOPMENT :wave:
+Check out this one instead: https://github.com/phil294/coffeesense/tree/master/server
+
 ## Contents
 
 - `Parser` - Parses CoffeeScript AST nodes into `vscode-languageserver` interfaces.
